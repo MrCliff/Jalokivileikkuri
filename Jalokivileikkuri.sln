@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jalokivileikkuri", "Jalokivileikkuri\Jalokivileikkuri.csproj", "{07FE9B50-23B1-4629-B67D-445425B98D2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07FE9B50-23B1-4629-B67D-445425B98D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07FE9B50-23B1-4629-B67D-445425B98D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07FE9B50-23B1-4629-B67D-445425B98D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07FE9B50-23B1-4629-B67D-445425B98D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6D5E90A-F374-4DAE-BD0A-F6600ECF4E84}
+	EndGlobalSection
+EndGlobal
