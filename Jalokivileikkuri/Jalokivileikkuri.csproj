@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cut.cs" />
+    <Compile Include="CutController.cs" />
+    <Compile Include="CutFactory.cs" />
+    <Compile Include="CutProduct.cs" />
+    <Compile Include="Cutter.cs" />
+    <Compile Include="Gem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
