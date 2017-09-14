@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Jalokivileikkuri
 {
@@ -11,47 +7,42 @@ namespace Jalokivileikkuri
     /// </summary>
     class CutProduct
     {
-        ICollection<Cut> cuts;
-
-
         /// <summary>
         /// The size of the original raw gem chunk.
         /// </summary>
-        private int RawChunkSize { get; set; }
-
-
+        private int RawChunkSize { get; }
+        
         /// <summary>
         /// The collection of the cuts that should be applied to the RawChunk.
         /// </summary>
-        private ICollection<Cut> Cuts
-        {
-            get { return cuts; }
-            set { cuts = value; }
-        }
-
-
+        private CutCombination Cuts { get; }
+        
         /// <summary>
         /// The total value of all the cuts.
         /// </summary>
-        private int Value
+        public int Value
         {
-            get { return 0; }
+            get
+            {
+                return Cuts.Value;
+            }
         }
-
-
+        
         /// <summary>
         /// The total waste left after all the cuts.
         /// </summary>
-        private int Waste
+        public int Waste
         {
-            get { return 0; }
+            get
+            {
+                return RawChunkSize - Cuts.SizeSum;
+            }
         }
-
-
+        
         /// <summary>
         /// The total profit after all the cuts.
         /// </summary>
-        private int Profit
+        public int Profit
         {
             get { return Value - Waste; }
         }
@@ -62,10 +53,27 @@ namespace Jalokivileikkuri
         /// </summary>
         /// <param name="rawChunkSize">The size of the original raw gem chunk.</param>
         /// <param name="cuts">The collection of the cuts that should be applied to the RawChunk.</param>
-        public CutProduct(int rawChunkSize, ICollection<Cut> cuts)
+        public CutProduct(int rawChunkSize, CutCombination cuts)
         {
             RawChunkSize = rawChunkSize;
             Cuts = cuts;
+        }
+
+
+        /// <summary>
+        /// Gives the string representation of this CutProduct.
+        /// </summary>
+        /// <returns>The string representation of this object.</returns>
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append("Value: " + Value);
+            result.Append(", Waste: " + Waste);
+            result.Append(", Profit: " + Profit);
+            //result.Append(", Cuts: " + Cuts.ToString());
+
+            return result.ToString();
         }
     }
 }
