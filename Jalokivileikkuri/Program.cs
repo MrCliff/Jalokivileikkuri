@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Net;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Json;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// The main program class.
@@ -25,22 +21,37 @@ namespace Jalokivileikkuri
 
             string webAddress = "https://raw.githubusercontent.com/wunderdogsw/wunderpahkina-vol7/master/input.json";
 
-            WebClient wc = new WebClient();
-            byte[] rawData = wc.DownloadData(webAddress);
-            string jsonString = Encoding.UTF8.GetString(rawData);
+            string filePath = "input.json";
+            string jsonString;
+
+            try
+            {
+                Console.WriteLine("Yritetään avata tiedostoa \"{0}\"", filePath);
+                jsonString = File.ReadAllText(filePath, Encoding.UTF8);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Tiedostoa ei pystytty lukemaan: {0}", e.Message);
+
+                try
+                {
+                    Console.WriteLine("Yritetään lukea tiedostoa osoitteesta: \"{0}\"", webAddress);
+                    WebClient wc = new WebClient();
+                    byte[] rawData = wc.DownloadData(webAddress);
+                    jsonString = Encoding.UTF8.GetString(rawData);
+                }
+                catch (WebException we)
+                {
+                    Console.WriteLine("Tiedostoa ei pystytty lukemaan: {0}\n", we.Message);
+                    return;
+                }
+            }
+
+            Console.WriteLine("Tiedoston luku onnistui!");
 
             var dataRetrievalTime = stopWatch.ElapsedMilliseconds;
-            //Dictionary<string, Dictionary<string, object[]>> result;
-            //result = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object[]>>>(jsonString);
-            //JsonObject result = (JsonObject)JsonValue.Parse(jsonString);
 
-            //foreach (var val in result["diamond"]["rawChunks"] as JsonArray)
-            //{
-            //    Console.Write(", " + val.ToString());
-            //}
-            //Console.WriteLine();
-
-            CutController cutCont = new CutController();
+            GemCutController cutCont = new GemCutController();
             cutCont.ReadData(jsonString);
 
             var initTime = stopWatch.ElapsedMilliseconds;
@@ -55,6 +66,8 @@ namespace Jalokivileikkuri
             Console.WriteLine("Initialization time: " + (double)initTime / 1000 + "s");
             Console.WriteLine("Data handling time: " + (double)(totalTime - dataRetrievalTime) / 1000 + "s");
             Console.WriteLine("Total execution time: " + (double)totalTime / 1000 + "s");
+
+            Console.ReadKey();
         }
     }
 }

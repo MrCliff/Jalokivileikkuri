@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// The product of a gem cut.

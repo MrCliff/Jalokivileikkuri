@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// A container that contains all the combination sets of cuts for the
@@ -18,12 +18,6 @@ namespace Jalokivileikkuri
         /// The set of possible cuts for the gem of this cutter.
         /// </summary>
         private SortedSet<Cut> PossibleCuts { get; }
-
-        /// <summary>
-        /// All the combinations that are not relevant for the currently biggest
-        /// chunk cut size.
-        /// </summary>
-        private IList<CutCombination> DismissedCombinations { get; set; }
 
 
         /// <summary>
@@ -80,8 +74,6 @@ namespace Jalokivileikkuri
 
                         if (currentCutCombinations.Contains(newCutCombination)) continue;
                         if (newCutCombinations.Contains(newCutCombination)) continue;
-
-                        //if (currentCutCombinations.ForEach(comb => newCutCombination)) //remove unnecessary cuts
 
                         newCutCombinations.Add(newCutCombination);
                     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// Stores a combination of cuts.
@@ -75,7 +75,6 @@ namespace Jalokivileikkuri
             if (SizeSum != other.SizeSum) return false;
             if (Value != other.Value) return false;
             if (Cuts.Count != other.Cuts.Count) return false;
-            //if (!Cuts.All(cut => other.Cuts.Contains(cut))) return false;
             return true;
         }
 

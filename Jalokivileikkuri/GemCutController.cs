@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Json;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// Calculates the gem cut profit from json data.
     /// </summary>
-    class CutController
+    class GemCutController
     {
         /// <summary>
         /// A list of all the gems.
@@ -17,7 +17,7 @@ namespace Jalokivileikkuri
         /// <summary>
         /// Initializes a new CutController for use.
         /// </summary>
-        public CutController()
+        public GemCutController()
         {
             Gems = new List<Gem>();
         }

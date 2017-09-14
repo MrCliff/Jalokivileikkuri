@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Json;
-using System.Threading.Tasks;
 
-namespace Jalokivileikkuri
+namespace GemCutter
 {
     /// <summary>
     /// Handles all the cutting.
     /// </summary>
     class Cutter
     {
-        //private object tLock = new object();
-
-
         /// <summary>
         /// The set of possible cuts for the gem of this cutter.
         /// </summary>
@@ -52,13 +48,10 @@ namespace Jalokivileikkuri
         public CutProduct Cut(int rawChunkSize)
         {
             CutProduct result;
-            // TODO: Add thread lock. The best is if it locks out only the threads that have the same rawChunkSize.
-            //lock (tLock)
-            //{
             if (OptimalCuts.TryGetValue(rawChunkSize, out result)) return result;
+
             result = CalculateBestCut(rawChunkSize);
             OptimalCuts.Add(rawChunkSize, result);
-            //}
 
             return result;
         }
