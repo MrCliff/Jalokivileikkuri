@@ -9,4 +9,4 @@ Valmiiksi käännettyä ohjelmaa voi testata ajamalla Testaa.bat -tiedoston.
 
 ## Ratkaisuohjelman antama vastaus
 Annetusta datasta ohjelmalla laskettu kaikkien jalokivien leikkauksesta syntynyt
-suurin mahdollinen yhteenlaskettu voitto on 101648.
+suurin mahdollinen yhteenlaskettu voitto on **101648**.
