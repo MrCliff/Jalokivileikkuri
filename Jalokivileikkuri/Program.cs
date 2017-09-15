@@ -26,28 +26,28 @@ namespace GemCutter
 
             try
             {
-                Console.WriteLine("Yritetään avata tiedostoa \"{0}\"", filePath);
+                Console.WriteLine("Trying to open file \"{0}\"", filePath);
                 jsonString = File.ReadAllText(filePath, Encoding.UTF8);
             }
             catch (IOException e)
             {
-                Console.WriteLine("Tiedostoa ei pystytty lukemaan: {0}", e.Message);
+                Console.WriteLine("The file could not be read: {0}", e.Message);
 
                 try
                 {
-                    Console.WriteLine("Yritetään lukea tiedostoa osoitteesta: \"{0}\"", webAddress);
+                    Console.WriteLine("Trying to read data from address: \"{0}\"", webAddress);
                     WebClient wc = new WebClient();
                     byte[] rawData = wc.DownloadData(webAddress);
                     jsonString = Encoding.UTF8.GetString(rawData);
                 }
                 catch (WebException we)
                 {
-                    Console.WriteLine("Tiedostoa ei pystytty lukemaan: {0}\n", we.Message);
+                    Console.WriteLine("Data could not be read: {0}\n", we.Message);
                     return;
                 }
             }
 
-            Console.WriteLine("Tiedoston luku onnistui!");
+            Console.WriteLine("Data retrieval was successful!\n");
 
             var dataRetrievalTime = stopWatch.ElapsedMilliseconds;
 
@@ -62,9 +62,13 @@ namespace GemCutter
             var totalTime = stopWatch.ElapsedMilliseconds;
 
             Console.WriteLine("Total profit: " + result);
+            Console.WriteLine();
+
             Console.WriteLine("Data retrieval time: " + (double)dataRetrievalTime / 1000 + "s");
-            Console.WriteLine("Initialization time: " + (double)initTime / 1000 + "s");
-            Console.WriteLine("Data handling time: " + (double)(totalTime - dataRetrievalTime) / 1000 + "s");
+            Console.WriteLine("Object creation time: " + (double)(initTime - dataRetrievalTime) / 1000 + "s");
+            Console.WriteLine("Data handling time: " + (double)(totalTime - initTime) / 1000 + "s");
+            Console.WriteLine("--");
+            Console.WriteLine("Total initialization time: " + (double)initTime / 1000 + "s");
             Console.WriteLine("Total execution time: " + (double)totalTime / 1000 + "s");
 
             Console.ReadKey();
